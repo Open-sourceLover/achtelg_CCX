@@ -1,0 +1,36 @@
+*HEADING
+cube with gravity load.
+**CCX example
+***
+*INCLUDE,INPUT=Nall.inp
+*INCLUDE,INPUT=Eall.inp
+*INCLUDE,INPUT=Nbou.inp
+***
+*MATERIAL,NAME=EL
+*ELASTIC
+210000.0,0.3
+*DENSITY
+7.8e-9
+***
+*SOLID SECTION,MATERIAL=EL,ELSET=Eall
+***
+*BOUNDARY
+Nbou1,1,3
+Nbou2,2,3
+Nbou3,3
+***
+*STEP
+*STATIC
+***
+*DLOAD
+**Assigns gravity loading in the negative z-direction
+** with magnitude 10000.0 to all elements
+EALL,GRAV,10000.0,0.0,0.0,-1.0
+***
+*NODE PRINT,NSET=Nall
+U
+*EL PRINT,ELSET=Eall
+S
+**
+*END STEP
+
